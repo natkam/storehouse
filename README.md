@@ -1,0 +1,26 @@
+https://docs.google.com/document/d/11liwY2o6ZTWITK4zY1uWSwqszecyZbLCOJf1SZ1PN4g/edit
+
+Zadanie testowe PY - staże Skygate W18
+
+W nowoczesnym magazynie znajduje się 10 autonomicznych półek ustawionych w jednej linii do ładowni ciężarówek. Półki te potrafią same się przestawiać, dzięki czemu możliwy jest szybszy dostęp do zamówionych produktów.
+
+Półki ustawiają się samoczynnie w nocy. Kiedy w trakcie ładunku towarów jest konieczna zmiana ustawień półek, półki mogą przesunąć się tylko do przodu, a półka znajdująca się na początku wędruje na koniec (jak w przypadku kolejki cyklicznej)
+
+Na każdej półce znajduje się miejsce na 10 jednostek spośród jednego do trzech z 5 typów produktów. (Dla przykładu półka posiadająca 7 jednostek jabłek i 3 jednostki pomarańczy)
+Do magazynu codziennie przyjeżdżają odbiorcy towaru w z góry zaplanowanej kolejności (10 transportów).
+
+Każdy transport stara się zabrać 5 jednostek jednego typu produktu, po który przyjechał. Ciężarówka transportowa nie będzie nigdy żądać jednocześnie kilku typów produktów lub innej ilości niż 5 jednostek.
+
+W przypadku kiedy w magazynie zabraknie danego typu towaru, transport odjedzie niepełny lub pusty.
+
+W nocy półki powinny sortować się w taki sposób, aby czas załadunku wszystkich ciężarówek był w sumie jak najkrótszy.
+Korzystając z django rest framework, flask, dowolnego innego frameworka lub czystego języka pythona napisz aplikację, która:
+- umożliwi tworzenie, aktualizowanie i usuwanie typów towarów, półek i transportów
+- pozwoli pobrać przez frontend listę półek wraz z ich zawartością oraz listę transportów
+- przy pobraniu listy półek otrzymamy na miarę własnych możliwości optymalnie posortowane półki w taki sposób, aby obsłużyć wszystkie transporty z jak najmniejszą ilością przesunięć półek
+
+W zadaniu należy wykorzystać relacyjną bazę danych, stworzyć odpowiednie modele oraz relacje.
+
+Kod powinien posiadać testy jednostkowe i integracyjne tam, gdzie jest to potrzebne (z wykorzystaniem mocków jeśli jest to niezbędne)
+
+Proszę się nie przejmować, jeżeli zaimplementowany algorytm nie będzie bardzo optymalny, dla nas ważniejsza jest umiejętność rozwiązywania problemów, nie chcielibyśmy aby poszukiwanie idealnego rozwiązania sprawiło, że projekt nie zostałoby ukończone :)

@@ -10,3 +10,4 @@ db.sqlite3
 deco.py
 main.py
 test_main.py
+secret_settings.py

@@ -2,10 +2,10 @@ import django
 django.setup()
 
 import functools
-from .models import Shelf, Transport
+from ..models import Shelf
 
 class TestShelf():
-    def shelf_test_decorator(func):
+    def test_shelf_decorator(func):
         @functools.wraps(func)
         def shelf_test_with_data(self):
             Shelf.objects.create(number=0, position=4)
@@ -21,15 +21,16 @@ class TestShelf():
             shelf0.delete()
         return shelf_test_with_data
 
-    @shelf_test_decorator
+    # shelf0 = Shelf.objects.create(number=0, position=4)
+    @test_shelf_decorator
     def test_shelf(self):
         shelf0 = Shelf.objects.get(number=0)
         assert shelf0.position == 4
         assert shelf0.prod1_count == 5
         assert shelf0.prod1_type == 'A'
 
-    @shelf_test_decorator
-    def test_functions(self):
+    @test_shelf_decorator
+    def test_shelf_functions(self):
         shelf0 = Shelf.objects.get(number=0)
         assert shelf0.__str__() == '4: Shelf no. 0'
         # assert shelf0.fill() == {'A': 5, 'B': 1, 'C': 6}

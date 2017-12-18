@@ -1,0 +1,10 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  {% for shelf in shelves %}
+    <div class="shelf">
+      <p>position: {{ shelf.position }}</p>
+      <p>{{ shelf.number }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}

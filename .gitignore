@@ -1,1 +1,12 @@
+*.pyc
+*~
+__pycache__
 myvenv
+.cache
+db.sqlite3
+/static
+.DS_Store
+.ropeproject
+deco.py
+main.py
+test_main.py

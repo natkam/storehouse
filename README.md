@@ -24,3 +24,9 @@ W zadaniu należy wykorzystać relacyjną bazę danych, stworzyć odpowiednie mo
 Kod powinien posiadać testy jednostkowe i integracyjne tam, gdzie jest to potrzebne (z wykorzystaniem mocków jeśli jest to niezbędne)
 
 Proszę się nie przejmować, jeżeli zaimplementowany algorytm nie będzie bardzo optymalny, dla nas ważniejsza jest umiejętność rozwiązywania problemów, nie chcielibyśmy aby poszukiwanie idealnego rozwiązania sprawiło, że projekt nie zostałoby ukończone :)
+
+
+
+=============
+
+python3.5

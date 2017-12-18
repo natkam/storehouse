@@ -65,6 +65,9 @@ class Transport(models.Model):
     product_type = models.CharField(max_length=15, choices=PRODUCT_TYPES, default='A')
     load_size = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5)])
 
+    def fill(self):
+        self.load_size = 5
+
 class ProductUnit(models.Model):
     shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, blank=True)
     transport = models.ForeignKey(Transport, on_delete=models.CASCADE, blank=True)

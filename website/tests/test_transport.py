@@ -7,10 +7,11 @@ from ..models import Transport
 class TestTransport:
     def test_transport_decorator(func):
         @functools.wraps(func)
-        def transport_test_with_data(self):
+        def test_transport_with_data(self):
             trans0 = Transport.objects.create(number=0)
             func(self)
             Transport.objects.get(number=0).delete()
+        return test_transport_with_data
 
     @test_transport_decorator
     def test_transport(self):
@@ -22,4 +23,5 @@ class TestTransport:
     @test_transport_decorator
     def test_transport_functions(self):
         trans0 = Transport.objects.get(number=0)
-        assert 0 == 0
+        trans0.fill()
+        assert trans0.load_size == 5

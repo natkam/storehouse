@@ -7,7 +7,7 @@ from ..models import Shelf
 class TestShelf():
     def test_shelf_decorator(func):
         @functools.wraps(func)
-        def shelf_test_with_data(self):
+        def test_shelf_with_data(self):
             Shelf.objects.create(number=0, position=4)
             shelf0 = Shelf.objects.get(number=0)
             shelf0.prod1_type = 'A'
@@ -19,7 +19,7 @@ class TestShelf():
             shelf0.save()
             func(self)
             shelf0.delete()
-        return shelf_test_with_data
+        return test_shelf_with_data
 
     # shelf0 = Shelf.objects.create(number=0, position=4)
     @test_shelf_decorator

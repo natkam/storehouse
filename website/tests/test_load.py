@@ -18,10 +18,10 @@ class TestLoad(TestCase):
     def test_load_functions(self):
         unit0 = Load.objects.get(id=0)
         assert unit0.__str__() == 'id 0, Apples'
-        # unit0.add_to_shelf()
+        # unit0.add_to_shelf_validator()
         # assert unit0.shelf.number == 7
         # shelf7 = Shelf.objects.get(number=7)
         # assert unit0.shelf == shelf7
-        # unit0.transfer()
+        # unit0.transfer_validator()
         # assert unit0.shelf == None
         # assert unit0.transport == Transport.objects.get(number=1)

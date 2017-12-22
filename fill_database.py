@@ -1,3 +1,13 @@
+"""
+Run:
+
+python manage.py flush   # remove all data from the db
+python fill_database.py
+
+This script creates full set of Shelves and Transports, fills the shelves with
+random loads, and handles transfering loads from shelves to transports appropriately.
+"""
+
 import django
 django.setup()
 

@@ -1,0 +1,1007 @@
+[
+{
+    "model": "website.shelf",
+    "pk": 0,
+    "fields": {
+        "position": 0
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 1,
+    "fields": {
+        "position": 1
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 2,
+    "fields": {
+        "position": 2
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 3,
+    "fields": {
+        "position": 3
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 4,
+    "fields": {
+        "position": 4
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 5,
+    "fields": {
+        "position": 5
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 6,
+    "fields": {
+        "position": 6
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 7,
+    "fields": {
+        "position": 7
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 8,
+    "fields": {
+        "position": 8
+    }
+},
+{
+    "model": "website.shelf",
+    "pk": 9,
+    "fields": {
+        "position": 9
+    }
+},
+{
+    "model": "website.transport",
+    "pk": 0,
+    "fields": {
+        "load_type": "('C', 'Carrots')"
+    }
+},
+{
+    "model": "website.transport",
+    "pk": 1,
+    "fields": {
+        "load_type": "('A', 'Apples')"
+    }
+},
+{
+    "model": "website.transport",
+    "pk": 2,
+    "fields": {
+        "load_type": "('D', 'Dates')"
+    }
+},
+{
+    "model": "website.transport",
+    "pk": 3,
+    "fields": {
+        "load_type": "('C', 'Carrots')"
+    }
+},
+{
+    "model": "website.transport",
+    "pk": 4,
+    "fields": {
+        "load_type": "('D', 'Dates')"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 255,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 256,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 257,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 258,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 259,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 260,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 261,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 262,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 263,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 264,
+    "fields": {
+        "shelf": 0,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 265,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 266,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 267,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 268,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 269,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 270,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 271,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 272,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 273,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 274,
+    "fields": {
+        "shelf": 1,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 275,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 276,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 277,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 278,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 279,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 280,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 281,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 282,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 283,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 284,
+    "fields": {
+        "shelf": 2,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 285,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "D"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 286,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 287,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 288,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "D"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 289,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "D"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 290,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 291,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 292,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "D"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 293,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 294,
+    "fields": {
+        "shelf": 3,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 295,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 296,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 297,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 298,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 299,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 300,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 301,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 302,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 303,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 304,
+    "fields": {
+        "shelf": 4,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 305,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 306,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 307,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 308,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 309,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 310,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 311,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 312,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 313,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 314,
+    "fields": {
+        "shelf": 5,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 315,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 316,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 317,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 318,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 319,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 320,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 321,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 322,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 323,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 324,
+    "fields": {
+        "shelf": 6,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 325,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 326,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 327,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 328,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "A"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 329,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 330,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 331,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 332,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 333,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 334,
+    "fields": {
+        "shelf": 7,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 335,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 336,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 337,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 338,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 339,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 340,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 341,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 342,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 343,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "E"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 344,
+    "fields": {
+        "shelf": 8,
+        "transport": null,
+        "load_type": "B"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 345,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 346,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 347,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 348,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 349,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 350,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 351,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 352,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 353,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+},
+{
+    "model": "website.load",
+    "pk": 354,
+    "fields": {
+        "shelf": 9,
+        "transport": null,
+        "load_type": "C"
+    }
+}
+]

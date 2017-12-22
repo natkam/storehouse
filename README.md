@@ -1,8 +1,8 @@
+#Zadanie testowe PY - staże Skygate W18
+
 https://docs.google.com/document/d/11liwY2o6ZTWITK4zY1uWSwqszecyZbLCOJf1SZ1PN4g/edit
 
-Zadanie testowe PY - staże Skygate W18
-
-W nowoczesnym magazynie znajduje się 10 autonomicznych półek ustawionych w jednej linii do ładowni ciężarówek. Półki te potrafią same się przestawiać, dzięki czemu możliwy jest szybszy dostęp do zamówionych produktów.
+<!-- W nowoczesnym magazynie znajduje się 10 autonomicznych półek ustawionych w jednej linii do ładowni ciężarówek. Półki te potrafią same się przestawiać, dzięki czemu możliwy jest szybszy dostęp do zamówionych produktów.
 
 Półki ustawiają się samoczynnie w nocy. Kiedy w trakcie ładunku towarów jest konieczna zmiana ustawień półek, półki mogą przesunąć się tylko do przodu, a półka znajdująca się na początku wędruje na koniec (jak w przypadku kolejki cyklicznej)
 
@@ -24,9 +24,22 @@ W zadaniu należy wykorzystać relacyjną bazę danych, stworzyć odpowiednie mo
 Kod powinien posiadać testy jednostkowe i integracyjne tam, gdzie jest to potrzebne (z wykorzystaniem mocków jeśli jest to niezbędne)
 
 Proszę się nie przejmować, jeżeli zaimplementowany algorytm nie będzie bardzo optymalny, dla nas ważniejsza jest umiejętność rozwiązywania problemów, nie chcielibyśmy aby poszukiwanie idealnego rozwiązania sprawiło, że projekt nie zostałoby ukończone :)
+ -->
+
+At the moment, the solution is far from complete. However, the models are defined
+and you can fiddle with the database using the admin panel (basic CRUD
+functionality...).
+
+The only other view available now is at 'shelves/' url, and it displays all the
+shelves in the storehouse and all the loads in them.
+
+The project is still in development phase, therefore the settings.py file has not
+been updated etc., but I have rebased the 'master' branch onto my 'working'
+branch in order to make it clear that there is anything at all in the repository.
 
 
 
 =============
-
+I used: (see also requirements.txt)
 python3.5
+Django2.0

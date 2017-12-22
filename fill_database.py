@@ -22,7 +22,7 @@ def create_shelves():
 
 def create_random_transports():
     for i in range(MAX_NUMBER_OF_TRANSPORTS):
-        transport = Transport.objects.create(number=i, load_type=choice(LOAD_TYPES))
+        transport = Transport.objects.create(number=i, load_type=choice(LOAD_TYPES)[0])
         transport.save()
 
 def generate_random_loads_for_one_shelf():

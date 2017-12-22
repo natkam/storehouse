@@ -23,11 +23,11 @@ class Shelf(models.Model):
     position = models.PositiveIntegerField(
         unique=True,
         validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES-1)],
+        # a shelf can be put aside in the storehouse (useful while shifting shelves)
         null=True,
         blank=True,
         default=None,
     )
-    # add null=True to the 'position' field; then a shelf can be put aside in the storehouse
 
     # def clean(self):
     #     error_messages = []
@@ -78,6 +78,8 @@ class Transport(models.Model):
 
 
 class Load(models.Model):
+    """ A load of specific type, can either be on a shelf or in a transport,
+    or nowhere in particular. """
     shelf = models.ForeignKey(
         Shelf,
         on_delete=models.CASCADE,

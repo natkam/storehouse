@@ -11,6 +11,4 @@ def shelves_list(request):
     for shelf in shelves:
         loads.append(shelf.load_set.all().order_by('load_type'))
     shelves_with_loads = zip(shelves, loads)
-    # loads1 = shelves.get(number=1).load_set.all().order_by('load_type')
-    return render(request, 'website/shelves_list.html', {'shelves': shelves, 'loads': loads, 'shelves_with_loads': shelves_with_loads})
-#
+    return render(request, 'website/shelves_list.html', {'shelves_with_loads': shelves_with_loads})

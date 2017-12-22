@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
-from django.utils.translation import gettext_lazy as _
+# from django.utils.translation import gettext_lazy as _
 
 LOAD_TYPES = (
     ('A', 'Apples'),
@@ -11,15 +11,23 @@ LOAD_TYPES = (
     ('E', 'Eggplants'),
 )
 
+MAX_NUMBER_OF_SHELVES = 10
+MAX_TYPES_OF_LOAD_ON_SHELF = 3
+MAX_LOADS_ON_SHELF = 10
+MAX_LOADS_IN_TRANSPORT = 5
+MAX_NUMBER_OF_TRANSPORTS = 5
+
 class Shelf(models.Model):
     """ Has 10 slots for loads, max. 3 types of load on one shelf. """
     number = models.PositiveIntegerField(primary_key=True)
     position = models.PositiveIntegerField(
         unique=True,
-        validators=[MaxValueValidator(9)],
+        validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES-1)],
+        null=True,
+        blank=True,
+        default=None,
     )
-    # TODO later: add some validation to ensure that no more than 10 shelves are created?
-    # Now, effectively this is ensured by the restrictions on the position field.
+    # add null=True to the 'position' field; then a shelf can be put aside in the storehouse
 
     # def clean(self):
     #     error_messages = []
@@ -55,14 +63,12 @@ class Transport(models.Model):
     """ Takes <=5 loads of one particular type of product. """
     number = models.PositiveIntegerField(
         primary_key=True,
-        validators=[MaxValueValidator(4)],
+        validators=[MaxValueValidator(MAX_NUMBER_OF_TRANSPORTS-1)],
     )
     load_type = models.CharField(
         max_length=15,
         choices=LOAD_TYPES,
-        default='A',
     )
-    max_load_count = 5
 
     def __str__(self):
         return 'Transport no. ' + str(self.number) + ', ' + self.get_load_type_display()
@@ -94,7 +100,7 @@ class Load(models.Model):
         shelf_error_messages = []
         shelf = self.shelf
         all_loads_on_shelf = shelf.load_set.all()
-        if all_loads_on_shelf.count() > 9:
+        if all_loads_on_shelf.count() > MAX_LOADS_ON_SHELF:
             shelf_error_messages.append('This shelf is already full.')
         same_type_loads_on_shelf = all_loads_on_shelf.filter(
             load_type=self.load_type
@@ -111,7 +117,7 @@ class Load(models.Model):
             transport_error_messages.append(
                 'The type of this load does not match the type of the transport.'
             )
-        if transport.load_set.count() >= transport.max_load_count:
+        if transport.load_set.count() >= MAX_LOADS_IN_TRANSPORT:
             transport_error_messages.append('This transport is already full.')
         return transport_error_messages
 

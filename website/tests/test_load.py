@@ -1,7 +1,6 @@
 import django
 django.setup()
 
-import functools
 from django.test import TestCase
 from ..models import Load, Transport, Shelf
 

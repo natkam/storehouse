@@ -29,29 +29,6 @@ class Shelf(models.Model):
         default=None,
     )
 
-    # def clean(self):
-    #     error_messages = []
-    #     product_units_on_shelf = self.productunit_set.all()
-    #     # self.productunit_set.count()
-    #
-    #     if self.prod1_count + self.prod2_count + self.prod3_count > 10:
-    #         error_messages.append('You cannot put more than 10 product units in total on one shelf.')
-    #
-    #     # possibly redundant since a shelf has an all_products dict? NOT YET
-    #     product_types_on_shelf = [self.prod1_type, self.prod2_type, self.prod3_type]
-    #     product_counts_on_shelf = [self.prod1_count, self.prod2_count, self.prod3_count]
-    #     for product_count, product_type in zip(product_counts_on_shelf, product_types_on_shelf):
-    #         if product_count and not product_type:
-    #             error_messages.append('You have to choose the type of the product you want to put on the shelf.')
-    #
-    #     """ Check if there are duplicate product types, except for empty strings when <=one type chosen: """
-    #     non_empty_product_types = list(filter(bool, product_types_on_shelf))
-    #     if len(set(non_empty_product_types)) != len(non_empty_product_types):
-    #         error_messages.append('Product types should differ.')
-    #
-    #     if len(error_messages):
-    #         raise ValidationError(' '.join(error_messages))
-
     def __str__(self):
         return str(self.position) + ': Shelf no. ' + str(self.number)
 

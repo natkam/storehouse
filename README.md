@@ -1,4 +1,4 @@
-#Zadanie testowe PY - staże Skygate W18
+# Zadanie testowe PY - staże Skygate W18
 
 https://docs.google.com/document/d/11liwY2o6ZTWITK4zY1uWSwqszecyZbLCOJf1SZ1PN4g/edit
 
@@ -40,6 +40,9 @@ branch in order to make it clear that there is anything at all in the repository
 
 
 =============
+
 I used: (see also requirements.txt)
+
 python3.5
+
 Django2.0

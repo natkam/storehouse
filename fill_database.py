@@ -4,7 +4,7 @@ Run:
 python manage.py flush   # remove all data from the db
 python fill_database.py
 
-This script creates full set of Shelves and Transports, fills the shelves with
+This script creates a full set of shelves and transports, fills the shelves with
 random loads, and handles transfering loads from shelves to transports appropriately.
 """
 
@@ -12,8 +12,7 @@ import django
 django.setup()
 
 from random import choice
-from website.models import Shelf, Transport, Load
-from website.models import LOAD_TYPES, MAX_TYPES_OF_LOAD_ON_SHELF, MAX_LOADS_ON_SHELF, MAX_NUMBER_OF_SHELVES, MAX_NUMBER_OF_TRANSPORTS
+from website.models import *
 
 def create_shelves():
     for i in range(MAX_NUMBER_OF_SHELVES):

@@ -1,11 +1,16 @@
 """
-The functions here handle transfering loads from shelves to transports appropriately.
+Handle transfering loads from shelves to transports appropriately.
 """
 
 import django
 django.setup()
 
-from website.models import *
+from website.models import (
+    Shelf, Transport, Load,
+    LOAD_TYPES, MAX_NUMBER_OF_SHELVES, MAX_TYPES_OF_LOAD_ON_SHELF,
+    MAX_LOADS_ON_SHELF, MAX_LOADS_IN_TRANSPORT, MAX_NUMBER_OF_TRANSPORTS,
+)
+
 
 def get_transports_order():
     transports_types = Transport.objects.values_list('load_type', flat=True).order_by('number')
@@ -13,10 +18,12 @@ def get_transports_order():
     transports_order = [type_letter for type_letter in transports_types]
     return transports_order
 
+
 def transfer_one_load(load, transport):
     load.shelf = None
     load.transport = transport
     load.save()
+
 
 def transfer_loads_from_one_shelf(shelf, transport):
     loads_on_shelf = shelf.load_set.all()
@@ -30,8 +37,9 @@ def transfer_loads_from_one_shelf(shelf, transport):
                 break
     return load_counter
 
+
 def shift_shelves(last_shelf_position):
-    """ 'last_shelf_position' is the position of the shelf which stays in the front of the line. """
+    """ Arg is the position of the shelf which stays in the front of the queue. """
     shelves = Shelf.objects.all()  # .order_by('position')
     aside = []
     for shelf in shelves:
@@ -46,6 +54,7 @@ def shift_shelves(last_shelf_position):
         shelf.position = MAX_NUMBER_OF_SHELVES + old_position - last_shelf_position
         shelf.save()
 
+
 def transfer_loads_to_one_transport(transport):
     load_counter = transport.load_set.count()
     last_shelf_position = 0
@@ -57,6 +66,7 @@ def transfer_loads_to_one_transport(transport):
             break
     if last_shelf_position:
         shift_shelves(last_shelf_position)
+
 
 # TODO: put that piece of code in another function, or put the if inside the function...?
 # tr = Transport.objects.get(number=2)

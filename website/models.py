@@ -17,8 +17,10 @@ MAX_LOADS_ON_SHELF = 10
 MAX_LOADS_IN_TRANSPORT = 5
 MAX_NUMBER_OF_TRANSPORTS = 5
 
+
 class Shelf(models.Model):
     """ Has 10 slots for loads, max. 3 types of load on one shelf. """
+
     number = models.PositiveIntegerField(primary_key=True)
     position = models.PositiveIntegerField(
         unique=True,
@@ -29,15 +31,16 @@ class Shelf(models.Model):
         default=None,
     )
 
-    def __str__(self):
-        return str(self.position) + ': Shelf no. ' + str(self.number)
-
     class Meta:
         ordering = ['position']
+
+    def __str__(self):
+        return str(self.position) + ': Shelf no. ' + str(self.number)
 
 
 class Transport(models.Model):
     """ Takes <=5 loads of one particular type of product. """
+
     number = models.PositiveIntegerField(
         primary_key=True,
         validators=[MaxValueValidator(MAX_NUMBER_OF_TRANSPORTS-1)],
@@ -47,16 +50,18 @@ class Transport(models.Model):
         choices=LOAD_TYPES,
     )
 
-    def __str__(self):
-        return 'Transport no. ' + str(self.number) + ', ' + self.get_load_type_display()
-
     class Meta:
         ordering = ['number']
 
+    def __str__(self):
+        return 'Transport no. ' + str(self.number) + ', ' + self.get_load_type_display()
+
 
 class Load(models.Model):
-    """ A load of specific type, can either be on a shelf or in a transport,
-    or nowhere in particular. """
+    """ A load of specific type, can be on a shelf or in a transport (not both),
+    or nowhere in particular. If assigned to either, perform validation: check
+    whether the types match, and whether the shelf/transport it full already. """
+
     shelf = models.ForeignKey(
         Shelf,
         on_delete=models.CASCADE,
@@ -75,11 +80,14 @@ class Load(models.Model):
         default='A',
     )
 
-    def add_to_shelf_validator(self):
+    def __str__(self):
+        return 'id ' + str(self.id) + ', ' + self.get_load_type_display()
+
+    def _add_to_shelf_validator(self):
         shelf_error_messages = []
         shelf = self.shelf
         all_loads_on_shelf = shelf.load_set.all()
-        if all_loads_on_shelf.count() > MAX_LOADS_ON_SHELF:
+        if all_loads_on_shelf.count() >= MAX_LOADS_ON_SHELF:
             shelf_error_messages.append('This shelf is already full.')
         same_type_loads_on_shelf = all_loads_on_shelf.filter(
             load_type=self.load_type
@@ -89,7 +97,7 @@ class Load(models.Model):
             shelf_error_messages.append('There can be max. 3 types of load on one shelf.')
         return shelf_error_messages
 
-    def transfer_validator(self):
+    def _transfer_validator(self):
         transport_error_messages = []
         transport = self.transport
         if self.load_type != transport.load_type:
@@ -105,11 +113,8 @@ class Load(models.Model):
         if self.shelf and self.transport:
             raise ValidationError('A load can be either on a shelf or in a transport, not both!')
         if self.shelf:
-            error_messages += self.add_to_shelf_validator()
+            error_messages += self._add_to_shelf_validator()
         if self.transport:
-            error_messages += self.transfer_validator()
-        if len(error_messages):
+            error_messages += self._transfer_validator()
+        if error_messages:
             raise ValidationError(' '.join(error_messages))
-
-    def __str__(self):
-        return 'id ' + str(self.id) + ', ' + self.get_load_type_display()

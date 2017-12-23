@@ -1,6 +1,6 @@
 body * {
   box-sizing: border-box;
-  /*font-family: 'Roboto', sans-serif;*/
+  font-family: 'Nova Mono', monospace;
 }
 
 body {
@@ -23,5 +23,13 @@ main {
   margin-top: 15px;
   margin-bottom: 10px;
   padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   border: solid 1px grey
+}
+
+.load-type-display {
+  color: #2F4F4F;
+  background: #DCDCDC;
+  padding: 2px;
 }

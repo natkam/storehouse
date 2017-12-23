@@ -1,12 +1,15 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
+  <div class="top-menu">
+    {# <a href="{% url 'shelf_new' %}"></a> #}
+  </div>
   {% for shelf, load in shelves_with_loads %}
     <div class="shelf">
       <h3>{{ shelf.position }}. Shelf no. {{ shelf.number }}</h3>
       <p>
         {% for load_unit in load %}
-          {{ load_unit.get_load_type_display }}
+          <span class=load-type-display>{{ load_unit.get_load_type_display }}</span>
         {% endfor %}
       </p>
     </div>

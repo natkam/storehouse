@@ -4,4 +4,3 @@ python manage.py runserver &>/dev/null &
 python manage.py migrate
 python manage.py loaddata website/fixtures/full_random.json
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'pass')" | ./manage.py shell
-

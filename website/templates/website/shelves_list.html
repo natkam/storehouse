@@ -2,14 +2,16 @@
 
 {% block content %}
   <div class="top-menu">
-    {# <a href="{% url 'shelf_new' %}"></a> #}
+    <a href="{% url 'shelf_new' %}">
+      <span class="glyphicon glyphicon-plus"></span> Add a new shelf
+    </a>
   </div>
   {% for shelf, load in shelves_with_loads %}
     <div class="shelf">
-      <h3>{{ shelf.position }}. Shelf no. {{ shelf.number }}</h3>
+      <h3 class="shelf-header">{{ shelf.position }}. Shelf no. {{ shelf.number }}</h3>
       <p>
         {% for load_unit in load %}
-          <span class=load-type-display>{{ load_unit.get_load_type_display }}</span>
+          <span class="load-type-display">{{ load_unit.get_load_type_display }}</span>
         {% endfor %}
       </p>
     </div>

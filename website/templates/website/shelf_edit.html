@@ -1,0 +1,9 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  <h1>New/Edit shelf</h1>
+  <form class="shelf-form" method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
+  </form>
+{% endblock %}

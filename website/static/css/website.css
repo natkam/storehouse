@@ -11,7 +11,11 @@ body {
 .page-header {
   background-color: #9B9B9C;
   margin-top: 0;
-  padding: 20px 20px 20px 40px;
+  padding: 10px 20px 20px 40px;
+}
+
+h1 a:link, h1 a:visited {
+  color: black;
 }
 
 main {
@@ -19,13 +23,25 @@ main {
   padding-right: 40px;
 }
 
+.top-menu {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.top-menu a {
+  color: black
+}
+
 .shelf {
   margin-top: 15px;
   margin-bottom: 10px;
   padding-left: 20px;
-  padding-top: 10px;
   padding-bottom: 5px;
   border: solid 1px grey
+}
+
+.shelf-header {
+  margin-top: 10px;
 }
 
 .load-type-display {

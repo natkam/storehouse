@@ -14,12 +14,12 @@ django.setup()
 from random import choice
 from website.models import (
     Shelf, Transport, Load,
-    LOAD_TYPES, MAX_NUMBER_OF_SHELVES, MAX_TYPES_OF_LOAD_ON_SHELF,
+    LOAD_TYPES, MAX_NUMBER_OF_SHELVES_IN_LINE, MAX_TYPES_OF_LOAD_ON_SHELF,
     MAX_LOADS_ON_SHELF, MAX_LOADS_IN_TRANSPORT, MAX_NUMBER_OF_TRANSPORTS,
 )
 
 def create_shelves():
-    for i in range(MAX_NUMBER_OF_SHELVES):
+    for i in range(MAX_NUMBER_OF_SHELVES_IN_LINE):
         new_shelf = Shelf.objects.create(number=i, position=i)
         new_shelf.save()
 

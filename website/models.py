@@ -25,7 +25,7 @@ class Shelf(models.Model):
     position = models.PositiveIntegerField(
         unique=True,
         validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES-1)],
-        # a shelf can be put aside in the storehouse (useful while shifting shelves)
+        # a shelf can be put aside in the storehouse (useful while shifting shelves):
         null=True,
         blank=True,
         default=None,
@@ -83,7 +83,7 @@ class Load(models.Model):
     def __str__(self):
         return 'id ' + str(self.id) + ', ' + self.get_load_type_display()
 
-    def _add_to_shelf_validator(self):
+    def add_to_shelf_validator(self):
         shelf_error_messages = []
         shelf = self.shelf
         all_loads_on_shelf = shelf.load_set.all()
@@ -97,7 +97,7 @@ class Load(models.Model):
             shelf_error_messages.append('There can be max. 3 types of load on one shelf.')
         return shelf_error_messages
 
-    def _transfer_validator(self):
+    def transfer_validator(self):
         transport_error_messages = []
         transport = self.transport
         if self.load_type != transport.load_type:
@@ -113,8 +113,8 @@ class Load(models.Model):
         if self.shelf and self.transport:
             raise ValidationError('A load can be either on a shelf or in a transport, not both!')
         if self.shelf:
-            error_messages += self._add_to_shelf_validator()
+            error_messages += self.add_to_shelf_validator()
         if self.transport:
-            error_messages += self._transfer_validator()
+            error_messages += self.transfer_validator()
         if error_messages:
             raise ValidationError(' '.join(error_messages))

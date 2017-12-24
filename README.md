@@ -26,11 +26,11 @@ Kod powinien posiadać testy jednostkowe i integracyjne tam, gdzie jest to potrz
 Proszę się nie przejmować, jeżeli zaimplementowany algorytm nie będzie bardzo optymalny, dla nas ważniejsza jest umiejętność rozwiązywania problemów, nie chcielibyśmy aby poszukiwanie idealnego rozwiązania sprawiło, że projekt nie zostałoby ukończone :)
  -->
 
-At the moment, the solution is far from complete. However, the models are defined and you can fiddle with the database using the `admin/` panel (which provides basic CRUD functionality).
+At the moment, the solution is still far from complete. However, the models are defined and you can fiddle with the database using the `admin/` panel (which provides basic CRUD functionality).
 
-Another view available now is at `shelves/` url: it displays all the shelves in the storehouse and all the loads in them. It is also possible to add new shelves using a link at the top of the shelves' list (there is a limit of 10 on the number of shelves, however).
+Other available templates now are at `shelves/` and `transports/` url: they display all the respective objects and all the loads in them. It is also possible to add new shelves and new transports using a link at the top of the objects' list (there is a limit of 5 on the number of transports, however).
 
-The algorithm sorting the shelves in the database depending on the order and types of transports is implemented in `sort_shelves.py` file. The last line (`transfer_all()` function) also fills the transports with loads from shelves and accordingly shifts the shelves, so the final result will not reflect the original order of shelves.
+The algorithm sorting the shelves in the database depending on the order and types of transports is implemented in `sort_shelves.py` file. The last line (`transfer_all()` function) also fills the transports with loads from shelves and accordingly shifts the shelves, so the final result displayed on the page will not reflect the order of shelves immediately after sorting, but the conditions after the transports have already taken their loads.
 
 The project is still in development phase, therefore the `settings.py` file has not been updated etc., but I have rebased the `master` branch onto my `working` branch in order to make it clear that there is anything at all that works in the repository.
 
@@ -39,7 +39,7 @@ After having cloned the repo (and installed Django), running the `./scripts/setu
 * creates a database and loads a fixture - a sample, randomly generated set of data,
 * creates a superuser *admin* with a *pass* password.
 
-In order to flush the database and reload the fixture, run `bash ./scripts/flush_and_fill.sh`. Running `python ./scripts/fill_database.py` will populate the **empty** database with a brand new random set of objects: shelves, loads on them, and (empty) transports. (This takes a bit longer than loading a fixture, though.)
+In order to flush the database and reload the fixture, run `bash ./scripts/flush_and_fill.sh`. Running `python ./scripts/fill_database.py` will populate the **empty** database with a brand new random set of objects: shelves, loads on them, and (empty) transports. (This obviously takes a bit longer than loading a fixture, though.)
 
 <!-- Note: the `SECRET_KEY` is in a separate file, and has not been pushed to GitHub. For the time being the above instructions will not work, then! -->
 

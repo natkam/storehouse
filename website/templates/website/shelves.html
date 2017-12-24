@@ -1,12 +1,12 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-  <div class="top-menu">
-    <a href="{% url 'shelf_new' %}">
-      <span class="glyphicon glyphicon-plus"></span> Add a new shelf
+  <div class="actions">
+    <a href="{% url 'section_new' url_name='shelves' %}">
+      <span class="glyphicon glyphicon-plus"></span>Add a new shelf
     </a>
   </div>
-  {% for shelf, load in shelves_with_loads %}
+  {% for shelf, load in objs_with_loads %}
     <div class="shelf">
       <h3 class="shelf-header">{{ shelf.position }}. Shelf no. {{ shelf.number }}</h3>
       <p>

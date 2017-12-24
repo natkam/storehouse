@@ -1,0 +1,19 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="actions">
+  <a href="{% url 'section_new' url_name='transports' %}">
+    <span class="glyphicon glyphicon-plus"></span>Add a new transport
+  </a>
+</div>
+{% for transport, load in objs_with_loads %}
+  <div class="shelf">
+    <h3 class="shelf-header">{{ transport.number }}. Transport of {{ transport.get_load_type_display }}</h3>
+    <p>
+      {% for load_unit in load %}
+        <span class="load-type-display">{{ load_unit.get_load_type_display }}</span>
+      {% endfor %}
+    </p>
+  </div>
+{% endfor %}
+{% endblock %}

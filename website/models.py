@@ -11,11 +11,11 @@ LOAD_TYPES = (
     ('E', 'Eggplants'),
 )
 
-MAX_NUMBER_OF_SHELVES = 10
+MAX_NUMBER_OF_SHELVES_IN_LINE = 10  # there may be more unordered shelves
 MAX_TYPES_OF_LOAD_ON_SHELF = 3
 MAX_LOADS_ON_SHELF = 10
-MAX_LOADS_IN_TRANSPORT = 5
 MAX_NUMBER_OF_TRANSPORTS = 5
+MAX_LOADS_IN_TRANSPORT = 5
 
 
 class Shelf(models.Model):
@@ -24,7 +24,7 @@ class Shelf(models.Model):
     number = models.PositiveIntegerField(primary_key=True)
     position = models.PositiveIntegerField(
         unique=True,
-        validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES-1)],
+        validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES_IN_LINE-1)],
         # a shelf can be put aside in the storehouse (useful while shifting shelves):
         null=True,
         blank=True,
@@ -118,3 +118,12 @@ class Load(models.Model):
             error_messages += self.transfer_validator()
         if error_messages:
             raise ValidationError(' '.join(error_messages))
+
+
+class Section(models.Model):  # should Shelf and Transport inherit from section?
+    """ A model for displaying objects on the webpage. """
+    url_name = models.CharField(max_length=15, unique=True)
+    display_name = models.CharField(max_length=20, unique=True, default=url_name)
+
+    def __str__(self):
+        return self.display_name

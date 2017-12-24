@@ -28,8 +28,25 @@ main {
   padding-bottom: 10px;
 }
 
-.top-menu a {
-  color: black
+.actions {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.actions a {
+  color: #2F4F4F;
+  font-size: 12pt;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+  color: #ffffff;
+  font-size: 16pt;
+  float: right;
+  margin-right: 35px;
+}
+
+.glyphicon::after {
+  content: "\00a0";
 }
 
 .shelf {
@@ -37,7 +54,8 @@ main {
   margin-bottom: 10px;
   padding-left: 20px;
   padding-bottom: 5px;
-  border: solid 1px grey
+  border: solid 1px grey;
+	border-radius: 3px;
 }
 
 .shelf-header {

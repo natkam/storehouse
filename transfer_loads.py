@@ -1,21 +1,22 @@
 """
 Handle transfering loads from shelves to transports appropriately.
 """
-
+import os
 import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storehouse.settings")
 django.setup()
 
 from website.models import (
     Shelf, Transport, Load,
-    LOAD_TYPES, MAX_NUMBER_OF_SHELVES, MAX_TYPES_OF_LOAD_ON_SHELF,
+    LOAD_TYPES, MAX_NUMBER_OF_SHELVES_IN_LINE, MAX_TYPES_OF_LOAD_ON_SHELF,
     MAX_LOADS_ON_SHELF, MAX_LOADS_IN_TRANSPORT, MAX_NUMBER_OF_TRANSPORTS,
 )
 
 
 def get_transports_order():
     transports_types = Transport.objects.values_list('load_type', flat=True).order_by('number')
-    # transport_types is a QuerySet - a list of strings: 'A', 'B', etc.
-    transports_order = [type_letter for type_letter in transports_types]
+    # transport_types is a QuerySet, e.g. <QuerySet ['B', 'E', 'A', 'A', 'B']>
+    transports_order = list(transports_types)
     return transports_order
 
 
@@ -40,7 +41,7 @@ def transfer_loads_from_one_shelf(shelf, transport):
 
 def shift_shelves(last_shelf_position):
     """ Arg is the position of the shelf which stays in the front of the queue. """
-    shelves = Shelf.objects.all()  # .order_by('position')
+    shelves = Shelf.objects.filter(position__isnull=False)  # .order_by('position')
     aside = []
     for shelf in shelves:
         if shelf.position < last_shelf_position:
@@ -51,14 +52,14 @@ def shift_shelves(last_shelf_position):
         shelf.save()
     for old_position in range(last_shelf_position):
         shelf = aside[old_position]
-        shelf.position = MAX_NUMBER_OF_SHELVES + old_position - last_shelf_position
+        shelf.position = MAX_NUMBER_OF_SHELVES_IN_LINE + old_position - last_shelf_position
         shelf.save()
 
 
 def transfer_loads_to_one_transport(transport):
     load_counter = transport.load_set.count()
     last_shelf_position = 0
-    shelves = Shelf.objects.all()
+    shelves = Shelf.objects.filter(position__isnull=False)
     for shelf in shelves:
         load_counter = transfer_loads_from_one_shelf(shelf, transport)
         if load_counter >= MAX_LOADS_IN_TRANSPORT:
@@ -66,9 +67,17 @@ def transfer_loads_to_one_transport(transport):
             break
     if last_shelf_position:
         shift_shelves(last_shelf_position)
+    return last_shelf_position
 
 
-# TODO: put that piece of code in another function, or put the if inside the function...?
-# tr = Transport.objects.get(number=2)
-# if tr.load_set.count() < MAX_LOADS_IN_TRANSPORT:
-#     transfer_loads_to_one_transport(tr)
+def transfer_all():
+    all_transports = Transport.objects.all()
+    shifts_counter = 0
+    for tr in all_transports:
+        if tr.load_set.count() < MAX_LOADS_IN_TRANSPORT:
+            shifts_counter += transfer_loads_to_one_transport(tr)
+    return shifts_counter
+
+
+# shifts_counter = transfer_all()
+# print('Shelf shifts performed:', shifts_counter)

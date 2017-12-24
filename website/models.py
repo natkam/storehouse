@@ -11,7 +11,7 @@ LOAD_TYPES = (
     ('E', 'Eggplants'),
 )
 
-MAX_NUMBER_OF_SHELVES = 10
+MAX_NUMBER_OF_SHELVES_IN_LINE = 10
 MAX_TYPES_OF_LOAD_ON_SHELF = 3
 MAX_LOADS_ON_SHELF = 10
 MAX_LOADS_IN_TRANSPORT = 5
@@ -24,7 +24,7 @@ class Shelf(models.Model):
     number = models.PositiveIntegerField(primary_key=True)
     position = models.PositiveIntegerField(
         unique=True,
-        validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES-1)],
+        validators=[MaxValueValidator(MAX_NUMBER_OF_SHELVES_IN_LINE-1)],
         # a shelf can be put aside in the storehouse (useful while shifting shelves):
         null=True,
         blank=True,

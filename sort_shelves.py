@@ -6,6 +6,10 @@ the storehouse during the night: put shelves with the zeroth type of load (at
 least 5 loads, if they exist) in the beginnig of the queue, then shelves with
 the first type (>= 5 loads), etc. - so that the least possible number of shifts
 is necessary during the day, while serving transports.
+
+Warning: it has been assumed that there is max. 10 shelves, i.e. exactly the
+same number as available positions. Additional shelves without the position
+attribute set may lead to unexpected results.
 """
 
 # TODO:
@@ -16,25 +20,25 @@ is necessary during the day, while serving transports.
 # The algorithm is 'greedy', i.e. it tries to maximise the number of loads of
 # the given type at the shelves closest to the beginning of the line. It could
 # be more effective to take into account also the following transports.
-
-# tmp!!!
+import os
 import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storehouse.settings")
 django.setup()
-# ^ tmp!!!
+# ^ tmp
 
 from collections import Counter
 
 from website.models import (
-    Shelf, Transport, Load,
-    LOAD_TYPES, MAX_NUMBER_OF_SHELVES, MAX_TYPES_OF_LOAD_ON_SHELF,
-    MAX_LOADS_ON_SHELF, MAX_LOADS_IN_TRANSPORT, MAX_NUMBER_OF_TRANSPORTS,
+    Shelf, Transport, Load, MAX_LOADS_IN_TRANSPORT,
 )
 from transfer_loads import (
-    get_transports_order, shift_shelves, transfer_loads_to_one_transport,
+    get_transports_order, transfer_all,
 )
 
 all_shelves = Shelf.objects.all().order_by('number')
-
+# all_shelves = Shelf.objects.filter(position__isnull=False).order_by('number')
+# actually, all_shelves_with_notnull_position
+# TODO: Find some consistent way of assuring that shelves without position set will not make the script fail.
 
 def get_load_counts_on_one_shelf(shelf):
     """ Return a Counter (a dict subclass), e.g. {'A': 3, 'D': 7}. """
@@ -98,9 +102,12 @@ def sort_shelves_in_db():
         shelf.save()
     position = 0
     for sorted_shelf_number in sorted_shelves_list:
+        # all_shelves = Shelf.objects.all()
         shelf_object = all_shelves.get(number=sorted_shelf_number)
         shelf_object.position = position
         shelf_object.save()
         position += 1
 
 sort_shelves_in_db()
+
+shifts_counter = transfer_all()

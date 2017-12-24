@@ -1,25 +1,27 @@
 """
 Create a full set of shelves and transports, and fill the shelves with random loads.
 
-Run:
+Run (bash console):
 $ bash ./scripts/flush_and_fill.sh
 to flush all the data from the DB and create a new set of objects (+ an admin account).
 To set execute permissions:
 $ chmod +x ./scripts/flush_and_fill.sh
 """
 
+import os
 import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storehouse.settings")
 django.setup()
 
 from random import choice
 from website.models import (
     Shelf, Transport, Load,
-    LOAD_TYPES, MAX_NUMBER_OF_SHELVES, MAX_TYPES_OF_LOAD_ON_SHELF,
+    LOAD_TYPES, MAX_NUMBER_OF_SHELVES_IN_LINE, MAX_TYPES_OF_LOAD_ON_SHELF,
     MAX_LOADS_ON_SHELF, MAX_LOADS_IN_TRANSPORT, MAX_NUMBER_OF_TRANSPORTS,
 )
 
 def create_shelves():
-    for i in range(MAX_NUMBER_OF_SHELVES):
+    for i in range(MAX_NUMBER_OF_SHELVES_IN_LINE):
         new_shelf = Shelf.objects.create(number=i, position=i)
         new_shelf.save()
 

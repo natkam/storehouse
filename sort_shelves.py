@@ -20,6 +20,10 @@ attribute set may lead to unexpected results.
 # The algorithm is 'greedy', i.e. it tries to maximise the number of loads of
 # the given type at the shelves closest to the beginning of the line. It could
 # be more effective to take into account also the following transports.
+
+# TODO: Maybe OrderedDict, namedtuple, or deque from collections could be of any use somewhere...?
+
+
 import os
 import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storehouse.settings")
@@ -35,10 +39,6 @@ from transfer_loads import (
     get_transports_order, transfer_all,
 )
 
-all_shelves = Shelf.objects.all().order_by('number')
-# all_shelves = Shelf.objects.filter(position__isnull=False).order_by('number')
-# actually, all_shelves_with_notnull_position
-# TODO: Find some consistent way of assuring that shelves without position set will not make the script fail.
 
 def get_load_counts_on_one_shelf(shelf):
     """ Return a Counter (a dict subclass), e.g. {'A': 3, 'D': 7}. """
@@ -49,36 +49,42 @@ def get_load_counts_on_one_shelf(shelf):
     return loads_counter
 
 
-def get_load_counts_on_all_shelves():
+def get_load_counts(shelves):
     """ Return a dict: key=shelf.number, value=get_load_counts_on_one_shelf() (a dict too). """
-    all_loads = {}
-    for shelf in all_shelves:
+    loads = {}
+    for shelf in shelves:
         one_shelf_loads = get_load_counts_on_one_shelf(shelf)
-        all_loads[shelf.number] = one_shelf_loads
-    return all_loads
+        loads[shelf.number] = one_shelf_loads
+    return loads
 
 
-def sort_shelves_with_given_load(tr_load_type, shelves_to_sort):
-    """ Return a sorted list of 'get_load_counts_on_one_shelf'-type-dicts. """
-    sorted_shelves = []
-    for shelf_number in shelves_to_sort:
-        shelf_loads = shelves_to_sort[shelf_number]
-        for load_type in shelf_loads:
+# TODO: those nested loops, and the if on top of that... list comprehension?
+def get_shelves_with_load_type(tr_load_type, all_shelves_with_load_counts):
+    """ Return a list of tuples: (shelf_number, load_count). """
+    shelves_with_the_load_type = []
+    for shelf_number, shelf_loads in all_shelves_with_load_counts.items():
+        for load_type, load_count in shelf_loads.items():
             if load_type == tr_load_type:
-                load_count = shelf_loads[load_type]
-                sorted_shelves.append((shelf_number, load_count))
-    sorted_shelves.sort(key=lambda pair: pair[1], reverse=True)
+                shelves_with_the_load_type.append((shelf_number, load_count))
+    return shelves_with_the_load_type
+
+
+def sort_shelves_with_load_type(shelves_to_sort):
+    """ Return a list of tuples: (shelf_number, load_count), sorted by descending load_count. """
+    sorted_shelves = sorted(shelves_to_sort, key=lambda pair: pair[1], reverse=True)
     return sorted_shelves
 
 
+# TODO: this function is quite big and complex. Try to break it into smaller pieces.
 def get_shelves_order():
     """ Return a list of shelves' numbers in order (list index == the right position). """
     transports_order = get_transports_order()
-    shelves_to_sort = get_load_counts_on_all_shelves()   # dict
+    all_shelves_with_load_counts = get_load_counts(all_shelves)   # dict
     sorted_shelves_list = []
     for tr_type in transports_order:
         # print('tr_type', tr_type)
-        tmp_sorted_shelves = sort_shelves_with_given_load(tr_type, shelves_to_sort) # list of tuples
+        shelves_to_sort = get_shelves_with_load_type(tr_type, all_shelves_with_load_counts)
+        tmp_sorted_shelves = sort_shelves_with_load_type(shelves_to_sort) # list of tuples
         loads_in_transport = 0
         while tmp_sorted_shelves:
             shelf_with_highest_count = tmp_sorted_shelves.pop(0)
@@ -95,19 +101,23 @@ def get_shelves_order():
     return sorted_shelves_list
 
 
-def sort_shelves_in_db():
+def sort_shelves_in_db(all_shelves):
     sorted_shelves_list = get_shelves_order()
     for shelf in all_shelves:
         shelf.position = None
         shelf.save()
     position = 0
     for sorted_shelf_number in sorted_shelves_list:
-        # all_shelves = Shelf.objects.all()
         shelf_object = all_shelves.get(number=sorted_shelf_number)
         shelf_object.position = position
         shelf_object.save()
         position += 1
 
-sort_shelves_in_db()
+
+all_shelves = Shelf.objects.all().order_by('number')
+# all_shelves = Shelf.objects.filter(position__isnull=False).order_by('number')
+# TODO: Find some consistent way of assuring that shelves without position set will not make the script fail.
+
+sort_shelves_in_db(all_shelves)
 
 shifts_counter = transfer_all()

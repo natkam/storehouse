@@ -39,35 +39,46 @@ def transfer_loads_from_one_shelf(shelf, transport):
     return load_counter
 
 
-def shift_shelves(last_shelf_position):
-    """ Arg is the position of the shelf which stays in the front of the queue. """
+def put_shelf_aside(shelf, aside):
+    aside.append(shelf)
+    shelf.position = None
+    shelf.save()
+
+def move_shelf_to_front(shelf, shift):
+    shelf.position -= shift
+    shelf.save()
+
+def put_shelf_from_aside_back(shelf, aside, shift):
+    old_position = aside.index(shelf)
+    shelf.position = MAX_NUMBER_OF_SHELVES_IN_LINE + old_position - shift
+    shelf.save()
+
+
+def shift_shelves(shift):
+    """ shift == current position of the shelf which will end up in the front of the queue. """
     shelves = Shelf.objects.filter(position__isnull=False)  # .order_by('position')
     aside = []
     for shelf in shelves:
-        if shelf.position < last_shelf_position:
-            aside.append(shelf)
-            shelf.position = None
+        if shelf.position < shift:
+            put_shelf_aside(shelf, aside)
         else:
-            shelf.position -= last_shelf_position
-        shelf.save()
-    for old_position in range(last_shelf_position):
-        shelf = aside[old_position]
-        shelf.position = MAX_NUMBER_OF_SHELVES_IN_LINE + old_position - last_shelf_position
-        shelf.save()
+            move_shelf_to_front(shelf, shift)
+    for shelf in aside:
+        put_shelf_from_aside_back(shelf, aside, shift)
 
 
 def transfer_loads_to_one_transport(transport):
     load_counter = transport.load_set.count()
-    last_shelf_position = 0
+    shift = 0
     shelves = Shelf.objects.filter(position__isnull=False)
     for shelf in shelves:
         load_counter = transfer_loads_from_one_shelf(shelf, transport)
         if load_counter >= MAX_LOADS_IN_TRANSPORT:
-            last_shelf_position = shelf.position
+            shift = shelf.position
             break
-    if last_shelf_position:
-        shift_shelves(last_shelf_position)
-    return last_shelf_position
+    if shift:
+        shift_shelves(shift)
+    return shift
 
 
 def transfer_all():
@@ -77,7 +88,7 @@ def transfer_all():
         if tr.load_set.count() < MAX_LOADS_IN_TRANSPORT:
             shifts_counter += transfer_loads_to_one_transport(tr)
     return shifts_counter
-
+# TODO: define a class perhaps, instead of passing arguments that are changed and returned?
 
 # shifts_counter = transfer_all()
 # print('Shelf shifts performed:', shifts_counter)

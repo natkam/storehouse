@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
-# from django.utils.translation import gettext_lazy as _
 
 LOAD_TYPES = (
     ('A', 'Apples'),
@@ -87,25 +86,32 @@ class Load(models.Model):
         shelf_error_messages = []
         shelf = self.shelf
         all_loads_on_shelf = shelf.load_set.all()
+
         if all_loads_on_shelf.count() >= MAX_LOADS_ON_SHELF:
             shelf_error_messages.append('This shelf is already full.')
+
         same_type_loads_on_shelf = all_loads_on_shelf.filter(
             load_type=self.load_type
         )
         unique_types = all_loads_on_shelf.values_list('load_type').distinct().count()
+
         if unique_types > 2 and not same_type_loads_on_shelf:
             shelf_error_messages.append('There can be max. 3 types of load on one shelf.')
+
         return shelf_error_messages
 
     def transfer_validator(self):
         transport_error_messages = []
         transport = self.transport
+
         if self.load_type != transport.load_type:
             transport_error_messages.append(
                 'The type of this load does not match the type of the transport.'
             )
+
         if transport.load_set.count() >= MAX_LOADS_IN_TRANSPORT:
             transport_error_messages.append('This transport is already full.')
+
         return transport_error_messages
 
     def clean(self):

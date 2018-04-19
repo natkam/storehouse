@@ -8,7 +8,7 @@ Another view available now is at `shelves/` url: it displays all the shelves in 
 
 The algorithm sorting the shelves in the database depending on the order and types of transports is implemented in `sort_shelves.py` file. The last line (`transfer_all()` function) also fills the transports with loads from shelves and accordingly shifts the shelves, so the final result will not reflect the original order of shelves.
 
-The project is still in development phase, therefore the `settings.py` file has not been updated etc., but I have rebased the `master` branch onto my `working` branch in order to make it clear that there is anything at all that works in the repository.
+The project is still in development phase, therefore the `settings.py` file has not been updated etc.
 
 After having cloned the repo (and installed Django), running the `./scripts/setup.sh` script in bash console:
 * starts a server at port 8000 (in the background),

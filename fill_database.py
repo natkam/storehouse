@@ -14,6 +14,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storehouse.settings")
 django.setup()
 
 from random import choice
+
 from website.models import (
     Shelf, Transport, Load,
     LOAD_TYPES, MAX_NUMBER_OF_SHELVES_IN_LINE, MAX_TYPES_OF_LOAD_ON_SHELF,

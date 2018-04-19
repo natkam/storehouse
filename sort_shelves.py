@@ -116,7 +116,7 @@ def sort_shelves_in_db(all_shelves):
 
 all_shelves = Shelf.objects.all().order_by('number')
 # all_shelves = Shelf.objects.filter(position__isnull=False).order_by('number')
-# TODO: Find some consistent way of assuring that shelves without position set will not make the script fail.
+# TODO: Find some consistent way of assuring that shelves without position set do not make the script fail.
 
 sort_shelves_in_db(all_shelves)
 
